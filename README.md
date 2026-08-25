@@ -60,22 +60,15 @@ The goal was to move beyond simple data description and produce **actionable, qu
 │ └── dashboard_screenshot.png → Dashboard preview
 └── README.md
 
-```
-
-
 ## 🖼️ Dashboard Preview
 
 ![Dashboard Screenshot](dashboard/dashboard_screenshot.png)
 
----
 
 ## 📈 Dataset
 
 [Olist Brazilian E-Commerce Public Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) (Kaggle) — ~99,000 real, anonymized orders, 2016–2018.
 
-```
-
----
 
 ## 🚀 Next Steps
 
