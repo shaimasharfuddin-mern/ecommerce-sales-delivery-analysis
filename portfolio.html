@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shaima Sharfuddin — Data Analyst Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12141c;
+    --surface:#1b1e29;
+    --surface-2:#20232f;
+    --line:#2a2e3d;
+    --amber:#e8a33d;
+    --teal:#4fd1c5;
+    --text:#edeff3;
+    --muted:#8a90a3;
+    --red:#e0645c;
+    --green:#5fbf8f;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; }
+
+  ::selection{ background:var(--amber); color:var(--ink); }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  .wrap{
+    max-width:960px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px;
+    height:1px;
+    background:var(--teal);
+    display:inline-block;
+  }
+
+  /* ---------- Header / nav ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:rgba(18,20,28,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:960px;
+    margin:0 auto;
+    padding:16px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .nav-name{
+    font-family:'Fraunces', serif;
+    font-size:17px;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  .nav-links{
+    display:flex;
+    gap:24px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color:var(--muted);
+    transition:color .15s ease;
+  }
+  .nav-links a:hover{ color:var(--text); }
+
+  @media (max-width:560px){
+    .nav-links{ gap:14px; }
+    .nav-links span.sep{ display:none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:88px 0 56px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    top:-140px; right:-140px;
+    width:360px; height:360px;
+    background:radial-gradient(circle, rgba(232,163,61,0.14), transparent 70%);
+    pointer-events:none;
+  }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(38px, 6vw, 60px);
+    line-height:1.05;
+    margin:18px 0 6px;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--amber);
+  }
+  .hero .role{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:22px;
+  }
+  .hero p.pitch{
+    max-width:560px;
+    font-size:17px;
+    color:#c7cbd6;
+    margin-bottom:34px;
+  }
+  .cta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 20px;
+    border-radius:6px;
+    font-size:14px;
+    font-weight:500;
+    text-decoration:none;
+    border:1px solid var(--line);
+    transition:transform .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn-primary{
+    background:var(--amber);
+    color:#1b1206;
+    border-color:var(--amber);
+    font-weight:600;
+  }
+  .btn-primary:hover{ background:#f0b458; }
+  .btn-ghost{
+    color:var(--text);
+    background:var(--surface);
+  }
+  .btn-ghost:hover{ border-color:var(--teal); color:var(--teal); }
+
+  /* ---------- KPI strip (signature element) ---------- */
+  .kpi-section{
+    padding:44px 0 8px;
+  }
+  .kpi-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:16px;
+  }
+  .kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:56px;
+  }
+  .kpi-card{
+    background:var(--surface);
+    padding:24px 22px 20px;
+    position:relative;
+  }
+  .kpi-card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:3px;
+  }
+  .kpi-card.c1::before{ background:var(--red); }
+  .kpi-card.c2::before{ background:var(--amber); }
+  .kpi-card.c3::before{ background:var(--teal); }
+  .kpi-number{
+    font-family:'JetBrains Mono', monospace;
+    font-size:30px;
+    font-weight:700;
+    letter-spacing:-0.02em;
+  }
+  .kpi-number small{
+    font-size:14px;
+    color:var(--muted);
+    font-weight:500;
+  }
+  .kpi-desc{
+    margin-top:8px;
+    font-size:13px;
+    color:var(--muted);
+    line-height:1.5;
+  }
+  @media (max-width:640px){
+    .kpi-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- Section shared ---------- */
+  section{ padding:56px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+
+  h2{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:28px;
+    margin:10px 0 28px;
+  }
+
+  /* ---------- Project case study ---------- */
+  .project-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:32px;
+  }
+  .project-card h3{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    font-weight:500;
+    margin:0 0 8px;
+  }
+  .project-tagline{
+    color:var(--muted);
+    font-size:14.5px;
+    margin-bottom:26px;
+  }
+  .stack-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:28px;
+  }
+  .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    padding:5px 10px;
+    border-radius:5px;
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    color:var(--teal);
+  }
+  .steps{
+    display:grid;
+    gap:18px;
+    margin-bottom:28px;
+  }
+  .step{
+    display:grid;
+    grid-template-columns:26px 1fr;
+    gap:14px;
+  }
+  .step-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--amber);
+    padding-top:2px;
+  }
+  .step-title{
+    font-weight:600;
+    font-size:14.5px;
+    margin-bottom:3px;
+  }
+  .step-body{
+    font-size:14px;
+    color:#b6bac6;
+  }
+  .findings{
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:18px 20px;
+    margin-bottom:26px;
+  }
+  .findings-title{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:12px;
+  }
+  .findings ul{
+    margin:0;
+    padding-left:18px;
+  }
+  .findings li{
+    font-size:14px;
+    color:#d3d6e0;
+    margin-bottom:9px;
+  }
+  .findings li:last-child{ margin-bottom:0; }
+  .findings strong{ color:var(--text); }
+
+  .project-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:20px;
+  }
+  @media (max-width:640px){
+    .skills-grid{ grid-template-columns:1fr; }
+  }
+  .skill-group{
+    padding:20px 0;
+  }
+  .skill-group-title{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:12px;
+  }
+  .skill-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .skill-pill{
+    font-size:13px;
+    padding:6px 12px;
+    border-radius:20px;
+    border:1px solid var(--line);
+    color:#c7cbd6;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:56px 0 72px;
+  }
+  footer h2{ margin-bottom:14px; }
+  footer p{
+    color:var(--muted);
+    max-width:480px;
+    margin-bottom:28px;
+    font-size:15px;
+  }
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:40px;
+  }
+  .foot-note{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    color:#565b6c;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="nav-name">Shaima Sharfuddin</div>
+    <nav class="nav-links">
+      <a href="#project">Project</a>
+      <span class="sep">·</span>
+      <a href="#skills">Skills</a>
+      <span class="sep">·</span>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow">Data Analyst · Fresher · MCA Graduate</div>
+    <h1>I read data<br>the way others<br><em>read a room.</em></h1>
+    <p class="pitch">I turn raw transactional data into decisions — using Python, SQL, and Tableau to find out what's actually driving the numbers, then explain why it matters.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#project">View my project ↓</a>
+      <a class="btn btn-ghost" href="https://github.com/shaimasharfuddin-mern/ecommerce-sales-delivery-analysis/tree/main" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn btn-ghost" href="mailto:shaimasharfuddin654@gmail.com">Email me</a>
+    </div>
+  </section>
+
+  <div class="kpi-section">
+    <div class="kpi-label">// findings from my latest analysis</div>
+    <div class="kpi-grid">
+      <div class="kpi-card c1">
+        <div class="kpi-number">2.57<small>★ vs 4.29★</small></div>
+        <div class="kpi-desc">Average review score for late vs. on-time deliveries — a ~40% satisfaction drop</div>
+      </div>
+      <div class="kpi-card c2">
+        <div class="kpi-number">63.4<small>%</small></div>
+        <div class="kpi-desc">Of total revenue comes from just 3 of 27 states in the dataset</div>
+      </div>
+      <div class="kpi-card c3">
+        <div class="kpi-number">99K<small>+ orders</small></div>
+        <div class="kpi-desc">Cleaned, joined, and analyzed across 7 relational tables</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="project">
+    <div class="eyebrow">Featured Project</div>
+    <h2>E-Commerce Sales &amp; Delivery Performance Analysis</h2>
+
+    <div class="project-card">
+      <h3>Does late delivery actually cost a business its customers?</h3>
+      <p class="project-tagline">End-to-end analysis of a real Brazilian e-commerce dataset — from raw CSVs to an interactive stakeholder dashboard.</p>
+
+      <div class="stack-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">SQL</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">Window Functions</span>
+        <span class="tag">Tableau</span>
+        <span class="tag">Matplotlib</span>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">The problem</div>
+            <div class="step-body">A marketplace needed to understand what was actually driving customer dissatisfaction, and where to focus regional investment.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">The approach</div>
+            <div class="step-body">Cleaned and joined 7 relational tables in Python/Pandas, validated every finding independently in SQL (including a RANK() window function), then built a 3-panel interactive Tableau dashboard.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">The outcome</div>
+            <div class="step-body">Quantified findings a business could act on immediately — not just charts, but a clear "so what" for logistics and regional strategy.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="findings">
+        <div class="findings-title">Key findings</div>
+        <ul>
+          <li><strong>Delivery reliability drives satisfaction</strong> — late orders average 2.57★ vs. 4.29★ for on-time orders, independently confirmed in both Python and SQL.</li>
+          <li><strong>Revenue is highly concentrated</strong> — São Paulo, Rio de Janeiro, and Minas Gerais alone generate 63.4% of total revenue.</li>
+          <li><strong>Category performance is regional</strong> — the top-selling product category shifts by state, suggesting a region-specific strategy would outperform a one-size-fits-all approach.</li>
+        </ul>
+      </div>
+
+      <div class="project-links">
+        <a class="btn btn-primary" href="https://public.tableau.com/app/profile/shaima.sharfuddin/viz/ecommerce-analysis-dashboard/Dashboard1?publish=yes" target="_blank" rel="noopener">Live Interactive Dashboard ↗</a>
+        <a class="btn btn-ghost" href="https://github.com/shaimasharfuddin-mern/ecommerce-sales-delivery-analysis/tree/main" target="_blank" rel="noopener">Code &amp; Full Analysis ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="eyebrow">Toolkit</div>
+    <h2>Skills &amp; Tools</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Analysis</div>
+        <div class="skill-list">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Pandas / NumPy</span>
+          <span class="skill-pill">Exploratory Data Analysis</span>
+          <span class="skill-pill">Statistical Comparison</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Data &amp; SQL</div>
+        <div class="skill-list">
+          <span class="skill-pill">SQL (Joins, CTEs)</span>
+          <span class="skill-pill">Window Functions</span>
+          <span class="skill-pill">SQLite</span>
+          <span class="skill-pill">Data Cleaning</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Visualization</div>
+        <div class="skill-list">
+          <span class="skill-pill">Tableau</span>
+          <span class="skill-pill">Matplotlib</span>
+          <span class="skill-pill">Dashboard Design</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Other</div>
+        <div class="skill-list">
+          <span class="skill-pill">Excel</span>
+          <span class="skill-pill">Git / GitHub</span>
+          <span class="skill-pill">Data Storytelling</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="eyebrow">Get in touch</div>
+    <h2>Let's talk data.</h2>
+    <p>Open to remote Data Analyst roles. Always happy to walk through the analysis, the SQL, or the dashboard in more depth.</p>
+    <div class="contact-row">
+      <a class="btn btn-primary" href="mailto:shaimasharfuddin654@gmail.com">shaimasharfuddin654@gmail.com</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/shaima-shaima-6b3659300/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn btn-ghost" href="https://github.com/shaimasharfuddin-mern/ecommerce-sales-delivery-analysis/tree/main" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+    <div class="foot-note">Built with data, not templates.</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
